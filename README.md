@@ -1,6 +1,6 @@
 # latihan_api
 
-A new Flutter project.
+Latihan flutter menggunakan state management native dari Flutter, API yang dibangun menggunakan Django Restframework dan di deploy pada AWS EC2
 
 ## Getting Started
 
