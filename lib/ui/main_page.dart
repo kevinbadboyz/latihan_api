@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:latihan_api/ui/homepage.dart';
+import 'package:latihan_api/ui/upload_image_page.dart';
 import 'package:latihan_api/ui/user_page.dart';
 
 class MainPage extends StatelessWidget {
@@ -29,6 +30,14 @@ class MainPage extends StatelessWidget {
             },
             title: Text('User'),
             subtitle: Text('CRUD User'),
+          ),
+          ListTile(
+            onTap: () {
+              Navigator.push(
+                  context, MaterialPageRoute(builder: (context) => UploadImagePage()));
+            },
+            title: Text('Upload Image'),
+            subtitle: Text('Upload Image From Image'),
           )
         ],
       ),
