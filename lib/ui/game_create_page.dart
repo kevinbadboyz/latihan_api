@@ -6,6 +6,7 @@ import 'package:latihan_api/response/game_create_response.dart';
 
 class GameCreatePage extends StatefulWidget {
   GameModel? gameModel;
+
   GameCreatePage({super.key, required this.gameModel});
 
   @override
@@ -19,9 +20,15 @@ class _GameCreatePageState extends State<GameCreatePage> {
   final tecName = TextEditingController();
   final tecPrice = TextEditingController();
 
+  String dropDownValue = 'Active';
+  var listStatus = ['Active', 'Non-Active'];
+
   @override
   void initState() {
     // futureGameCreate = gameRepository.addGame(GameParam(name: 'Game A2', price: '125000.00'));
+    if(widget.gameModel != null){
+      tecName.text = widget.gameModel!.name;
+    }
     super.initState();
   }
 
@@ -29,7 +36,8 @@ class _GameCreatePageState extends State<GameCreatePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.gameModel == null ? 'Form Add Game' : 'Form Update Game'),
+        title: Text(
+            widget.gameModel == null ? 'Form Add Game' : 'Form Update Game'),
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
       ),
       body: Form(
@@ -44,7 +52,9 @@ class _GameCreatePageState extends State<GameCreatePage> {
                   controller: tecName,
                   decoration: InputDecoration(
                       label: Text('Nama Game'), hintText: 'Masukkan nama game'),
-                  validator: (value)=> value == null || value.isEmpty ? 'Masukkan nama game anda' : null,
+                  validator: (value) => value == null || value.isEmpty
+                      ? 'Masukkan nama game anda'
+                      : null,
                 ),
                 const SizedBox(
                   height: 20,
@@ -53,8 +63,31 @@ class _GameCreatePageState extends State<GameCreatePage> {
                   controller: tecPrice,
                   keyboardType: TextInputType.number,
                   decoration: InputDecoration(
-                      label: Text('Harga Game'), hintText: 'Masukkan harga game'),
-                  validator: (value)=> value == null || value.isEmpty ? 'Masukkan harga game anda' : null,
+                      label: Text('Harga Game'),
+                      hintText: 'Masukkan harga game'),
+                  validator: (value) => value == null || value.isEmpty
+                      ? 'Masukkan harga game anda'
+                      : null,
+                ),
+                const SizedBox(
+                  height: 20,
+                ),
+                DropdownButtonFormField(
+                  value: dropDownValue,
+                  items: listStatus
+                      .map((element) => DropdownMenuItem(
+                            child: Text(element),
+                            value: element,
+                          ))
+                      .toList(),
+                  onChanged: (val) {},
+                  icon: Icon(
+                    Icons.arrow_drop_down_circle,
+                    color: Colors.deepPurple,
+                  ),
+                  dropdownColor: Colors.deepPurple.shade50,
+                  decoration: InputDecoration(
+                      labelText: 'Status Game', prefixIcon: Icon(Icons.info)),
                 ),
                 const SizedBox(
                   height: 20,
@@ -64,7 +97,7 @@ class _GameCreatePageState extends State<GameCreatePage> {
                   children: [
                     ElevatedButton(
                         onPressed: () {
-                          if(globayKey.currentState!.validate()){
+                          if (globayKey.currentState!.validate()) {
                             futureGameCreate = gameRepository.addGame(GameParam(
                                 name: tecName.text.toString(),
                                 price: tecPrice.text.toString()));

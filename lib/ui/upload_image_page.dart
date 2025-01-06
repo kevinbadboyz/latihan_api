@@ -62,9 +62,9 @@ class _UploadImagePageState extends State<UploadImagePage> {
                 : ElevatedButton(
                     onPressed: () {
                       futureUserCreate = userRepository.addUser(UserParam(
-                          firstName: 'James',
-                          lastName: 'Davis',
-                          gender: 'Male',
+                          firstName: 'Emma',
+                          lastName: 'Miller',
+                          gender: 'Female',
                           image: file));
                     },
                     child: Text('Upload Image')),

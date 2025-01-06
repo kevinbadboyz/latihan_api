@@ -13,6 +13,8 @@ class UserPage extends StatefulWidget {
 class _UserPageState extends State<UserPage> {
   final userRepository = UserRepository();
   late final Future<List<UserModel>> futureUsers;
+  String blankImage =
+      'https://www.generationsforpeace.org/wp-content/uploads/2018/03/empty-300x240.jpg';
 
   @override
   void initState() {
@@ -39,7 +41,18 @@ class _UserPageState extends State<UserPage> {
                   itemBuilder: (context, index) {
                     UserModel userModel = snapshot.data![index];
                     return ListTile(
-                      leading: CircleAvatar(backgroundImage: NetworkImage(userModel.image),),
+                      // leading: userModel.image != null
+                      //     ? CircleAvatar(
+                      //         backgroundImage: NetworkImage(userModel.image!),
+                      //       )
+                      //     : CircleAvatar(
+                      //         backgroundImage: NetworkImage(blankImage),
+                      //       ),
+                      leading: CircleAvatar(
+                        backgroundImage: NetworkImage(userModel.image != null
+                            ? userModel.image!
+                            : blankImage),
+                      ),
                       title:
                           Text('${userModel.firstName} ${userModel.lastName}'),
                       subtitle: Text(userModel.gender),

@@ -3,7 +3,7 @@ class UserModel {
   final String firstName;
   final String lastName;
   final String gender;
-  final String image;
+  final String? image;
 
   UserModel(
       {required this.id,

@@ -36,7 +36,7 @@ class UserRepository {
     });
     try {
       var response =
-          await Dio().post('http://54.243.8.93:8000/api/users', data: formData);
+          await Dio().post('http://54.243.8.93:8000/api/users', data: userParam.toJson());
       debugPrint('POST Response : ${response.data}');
       return UserCreateResponse.fromJson(response.data);
     } on DioException catch (e) {

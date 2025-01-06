@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:latihan_api/repo/game_repository.dart';
 import 'package:latihan_api/ui/game_create_page.dart';
+import 'package:latihan_api/ui/game_detail_page.dart';
 
 import '../models/game_model.dart';
 
@@ -55,26 +56,24 @@ class _HomepageState extends State<Homepage> {
                 child: Text(snapshot.error.toString()),
               );
             } else if (snapshot.hasData) {
-              var game = snapshot.data!;
               return ListView.separated(
                 itemCount: snapshot.data!.length,
                 itemBuilder: (_, index) {
-                  //gameModel = snapshot.data![index];
-                  return Container(
-                    color: snapshot.data![index].status == 'Non-Active'
-                        ? Colors.grey[300]
-                        : Colors.white,
-                    child: ListTile(
-                      leading: CircleAvatar(
-                          child: Text(snapshot.data![index].id.toString())),
-                      title: Text(snapshot.data![index].name),
-                      subtitle: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(snapshot.data![index].status),
-                          Text(snapshot.data![index].price),
-                        ],
-                      ),
+                  return ListTile(
+                    onTap: (){
+                      debugPrint('Item : ${snapshot.data![index].name}');
+                      gameModel = snapshot.data![index];
+                      Navigator.push(context, MaterialPageRoute(builder: (context)=> GameDetailPage(gameModel: gameModel,)));
+                    },
+                    leading: CircleAvatar(
+                        child: Text(snapshot.data![index].id.toString())),
+                    title: Text(snapshot.data![index].name),
+                    subtitle: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(snapshot.data![index].status),
+                        Text(snapshot.data![index].price),
+                      ],
                     ),
                   );
                 },
