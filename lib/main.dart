@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:latihan_api/ui/main_page.dart';
-
-import 'ui/homepage.dart';
+import 'package:latihan_api/ui/homepage.dart';
 
 void main() {
   runApp(const MyApp());
@@ -19,7 +17,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: MainPage(),
+      home: Homepage(),
     );
   }
 }

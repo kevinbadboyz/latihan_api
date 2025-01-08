@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:latihan_api/repo/user_repository.dart';
 
-import '../models/user_model.dart';
+import '../../models/user_model.dart';
 
-class UserPage extends StatefulWidget {
-  const UserPage({super.key});
+class UserListPage extends StatefulWidget {
+  const UserListPage({super.key});
 
   @override
-  State<UserPage> createState() => _UserPageState();
+  State<UserListPage> createState() => _UserListPageState();
 }
 
-class _UserPageState extends State<UserPage> {
+class _UserListPageState extends State<UserListPage> {
   final userRepository = UserRepository();
   late final Future<List<UserModel>> futureUsers;
   String blankImage =

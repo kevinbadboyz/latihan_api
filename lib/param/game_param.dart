@@ -1,9 +1,12 @@
 class GameParam {
-  final String name;
-  final String price;
+  final int? id;
+  final String? name;
+  final String? price;
+  final String? status;
 
-  GameParam({required this.name, required this.price});
+  GameParam({this.id, this.name, this.price, this.status});
+
   Map<String, dynamic> toJson() {
-    return {'name': this.name, 'price': this.price};
+    return {'name': this.name, 'price': this.price, 'status': this.status};
   }
 }
